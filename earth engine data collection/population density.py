@@ -21,7 +21,7 @@ cols = 24
 
 
 @retry(tries=10, delay=1, backoff=2)
-def getResult(index, items):
+def getArr(index, items):
     num = items[0]
     loc = ee.Geometry.Point(items[2], items[1])
     roi = loc.buffer(12000)
@@ -68,16 +68,16 @@ def limit_cpu():
 
 if __name__ == '__main__':
     for img in norm:
-    name = 'pop density'
-    band = 'population density'
-    img = imp
-
-    site_items = df_sites.to_numpy().tolist()
-    site_items = [x + [name, band, img] for x in site_items]
-
-    pool = multiprocessing.Pool(None, limit_cpu)
-    pool.starmap(getResult, enumerate(site_items))
-
-    pool.close()
+        name = 'pop density'
+        band = 'population density'
+        img = imp
+    
+        site_items = df_sites.to_numpy().tolist()
+        site_items = [x + [name, band, img] for x in site_items]
+    
+        pool = multiprocessing.Pool(None, limit_cpu)
+        pool.starmap(getArr, enumerate(site_items))
+    
+        pool.close()
 
 
