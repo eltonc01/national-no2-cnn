@@ -128,7 +128,7 @@ def findWindow(arr, rows, cols):
 
 
 @retry(tries=10, delay=1, backoff=2)
-def getResult(index, items):
+def getArr(index, items):
     year = items[3]
     sdate = datetime.datetime(year, int(items[2]), 1)
     num = items[1]
@@ -155,6 +155,6 @@ if __name__ == '__main__':
     logging.basicConfig()
 
     pool = multiprocessing.Pool(None, limit_cpu)
-    pool.starmap(getResult, enumerate(items))
+    pool.starmap(getArr, enumerate(items))
 
     pool.close()
