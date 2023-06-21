@@ -1,4 +1,4 @@
-# National Ground-Level NO2 Predictions Via Satellite Imagery Driven Convolutional Neural Networks
+# National Ground-Level NO<sub>2</sub> Predictions Via Satellite Imagery Driven Convolutional Neural Networks
 
 Code for the manuscript entitled, "National Ground Level NO<sub>2</sub> Predictions Via Satellite Imagery Based Convolutional Neural Networks," towards more accurate, low-cost NO<sub>2</sub> modeling using modern deep learning techniques.
 
