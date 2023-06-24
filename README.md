@@ -18,6 +18,7 @@ As of now, the code contains an example of a single train test split for annual 
 - NumPy
 - Scikit-Learn
 - tqdm
+- torchmetrics
 - Earth Engine
 - datetime
 - logging
