@@ -15,7 +15,7 @@ ee.Initialize(opt_url='https://earthengine-highvolume.googleapis.com')
 time_dict = np.load('date dict.npy', allow_pickle=True).item()
 
 omi = ee.ImageCollection("COPERNICUS/S5P/OFFL/L3_NO2")
-omi = omi.select(['NO2_column_number_density', 'cloud_fraction'])
+omi = omi.select(['tropospheric_NO2_column_number_density', 'cloud_fraction'])
 df_no2 = pd.read_csv('no2 sites.csv')
 
 imglist = []
@@ -35,7 +35,7 @@ def dailySort(dayOffset):
 
     def getArraysNO2(index):
         return ee.Image(limg.get(index)).sampleRectangle(roi, defaultValue=1000).getArray(
-            'NO2_column_number_density').toList()
+            'tropospheric_NO2_column_number_density').toList()
 
     def getArraysCloud(index):
         return ee.Image(limg.get(index)).sampleRectangle(roi, defaultValue=1000).getArray('cloud_fraction').toList()
@@ -146,15 +146,10 @@ def getArr(index, items):
     print(f'Done: {index}, Year: {year}')
 
 
-def limit_cpu():
-    p = psutil.Process(os.getpid())
-    p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
-
-
 if __name__ == '__main__':
     logging.basicConfig()
 
-    pool = multiprocessing.Pool(None, limit_cpu)
+    pool = multiprocessing.Pool(processes=25)
     pool.starmap(getArr, enumerate(items))
 
     pool.close()
