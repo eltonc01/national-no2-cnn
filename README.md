@@ -27,3 +27,4 @@ As of now, the code contains an example of a single train test split for annual 
 - psutil
 - os
 - urllib
+- Scikit-Image
